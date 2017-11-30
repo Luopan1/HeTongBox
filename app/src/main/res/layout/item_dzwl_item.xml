@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_corners_dark_color"
+        android:paddingBottom="25dp">
+
+        <com.test720.hetong.view.CircleImageView
+            android:id="@+id/icon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"
+            android:src="#FD4A6A"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/icon"
+            android:text="2017-12-4 12:30"
+            android:textColor="#FE4C66"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/cashKind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/time"
+            android:layout_below="@+id/time"
+            android:layout_marginTop="10dp"
+            android:text="电子围栏                                                                          "
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@drawable/bottom_corners_white_color"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="尊敬的用户，你接收到一条电子围栏报警："
+            android:textColor="#FD3801"
+            android:textSize="17sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="报警名称：电子围栏报警"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="报警描述：您的爱车已离开电子围栏范围"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/baojingshijian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="报警时间：2017-15-15 9:30"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="请及时检查，如果是忘记关闭电子围栏\为避免影响，请及时关闭。"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/mingritianqi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="明日天气：多云"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</LinearLayout>

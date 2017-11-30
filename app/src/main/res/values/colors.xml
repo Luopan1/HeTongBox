@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2D343C</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color> <!--白色 -->
+    <color name="text_color">#2D343C</color>
+    <!--<color name="text_color">#000000</color>-->
+    <color name="textcolor">#454545</color>
+    <color name="editcolor">#959595</color>
+    <color name="tou">#50000000</color>
+    <color name="bg">#f8f8f8</color>
+    <color name="system_color">#D3D1D2</color>
+    <color name="deep_blue"  >#C0D1ED</color>
+    <color name="bantouming">#e0000000</color>
+    <color name="gary_color">#c9c9c9</color>
+    <color name="touming">#00000000</color>
+    <color name="starlogin">#3680f5</color>
+    <color name="not">#3ca3fb</color>
+    <color name="blue">#3A81F5</color>
+    <color name="gary">#CECECE</color>
+    <color name="ed_text">#BCBCBC</color>
+    <color name="dake">#1F212E</color>
+    <color name="backgunag">#ECECEC</color>
+    <color name="wenhong">#de3435</color>
+    <color name="red">#f42f34</color>
+    <color name="xianColor">#E0E0E0</color>
+    <color name="message_text">#9c9c9c</color>
+    <color name="todle">#2f2f2f</color>
+    <color name="weibo">#FC6A6A</color>
+    <color name="wex">#8CCB13</color>
+    <color name="gray_normal">#c0c0c0</color>
+    <color name="background">#EDEDED</color>
+    <color name="backgroundColorPress">#DBDBD3</color>
+    <color name="backgroundColor">#E8E8E0</color>
+    <color name="cheng">#FF6F07</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="title_color">#333333</color>
+</resources>

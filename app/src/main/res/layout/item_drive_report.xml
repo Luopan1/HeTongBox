@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/itemView"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="10dp"
+              android:layout_marginRight="10dp"
+              android:layout_marginTop="15dp"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_corners_dark_color"
+        android:paddingBottom="25dp">
+
+        <com.test720.hetong.view.CircleImageView
+            android:id="@+id/icon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"
+            android:src="#FD4A6A"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/icon"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_toEndOf="@+id/icon"
+            android:text="2017-12-4 12:30"
+            android:textColor="#18E597"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/time"
+            android:layout_below="@+id/time"
+            android:layout_marginTop="10dp"
+            android:text="每日行车报告                                                                           "
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/drawoble_white_below"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="当天行车数据："
+            android:textColor="#68CDA5"
+            android:textSize="17sp"/>
+
+        <TextView
+            android:id="@+id/dangrixingshilicheng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="当日行驶里程：5km"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/xingcheshijian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="行车时间：20分钟"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/pingjunsudu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="平均车速：60m/s"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/mingrixianxingweihao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="明日限行尾号：5.0"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/mingritianqi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="明日天气：多云"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"
+            android:visibility="gone"/>
+    </LinearLayout>
+</LinearLayout>
