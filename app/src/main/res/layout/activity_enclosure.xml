@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context="com.test720.hetong.module.dynamic.EnclosureActivity">
 
+
+    <com.test720.hetong.view.CircleImageView
+        android:id="@+id/message"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="100dp"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"
+        android:src="@mipmap/zhuanquanjiazai"/>
+
     <com.amap.api.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
@@ -15,7 +26,7 @@
     <RelativeLayout
         android:id="@+id/controlRela"
         android:layout_width="match_parent"
-        android:layout_height="87dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="50dp"
@@ -24,20 +35,21 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="90dp"
             android:alpha="0.3"
-            android:background="#DCDCDB"/>
+            android:background="#DDDDDD"
+            android:paddingBottom="10dp"/>
 
         <LinearLayout
             android:id="@+id/relative"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:text="100m"
                 android:textColor="#EC7F00"
@@ -107,7 +119,7 @@
                 />
 
         </RadioGroup>
-    </RelativeLayout>
 
+    </RelativeLayout>
 
 </RelativeLayout>

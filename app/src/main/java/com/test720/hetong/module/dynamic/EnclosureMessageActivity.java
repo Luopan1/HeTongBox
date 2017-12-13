@@ -1,4 +1,4 @@
-package com.test720.hetong.module.protect;
+package com.test720.hetong.module.dynamic;
 
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,71 +9,57 @@ import com.google.gson.Gson;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
+import com.lcodecore.tkrefreshlayout.utils.DensityUtil;
 import com.test720.hetong.R;
 import com.test720.hetong.adapter.BaseRecyclerAdapter;
 import com.test720.hetong.adapter.BaseRecyclerHolder;
 import com.test720.hetong.base.BaseToolbarActivity;
-import com.test720.hetong.bean.TrafficBean;
+import com.test720.hetong.bean.EncloseBean;
 import com.test720.hetong.network.RxSchedulersHelper;
 import com.test720.hetong.network.RxSubscriber;
+import com.test720.hetong.view.SpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class IllegalToRemindActivity extends BaseToolbarActivity {
+public class EnclosureMessageActivity extends BaseToolbarActivity {
 
 
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.refreshlayout)
     TwinklingRefreshLayout mRefreshlayout;
+    List<EncloseBean.DataBean.ListBean> mLists = new ArrayList<>();
     private int page = 1;
-    List<TrafficBean.DataBean.ListBean> trafficLits = new ArrayList<>();
-    BaseRecyclerAdapter<TrafficBean.DataBean.ListBean> mAdapter;
+    BaseRecyclerAdapter<EncloseBean.DataBean.ListBean> mAdapter;
 
     @Override
     protected int getContentView() {
-        return R.layout.activity_illegal_to_remind;
+        return R.layout.activity_enclosure_message;
     }
 
     @Override
     protected void initData() {
+
     }
 
-    @Override
-    public void setListener() {
-        mRefreshlayout.setOnRefreshListener(new RefreshListenerAdapter() {
-            @Override
-            public void onRefresh(TwinklingRefreshLayout refreshLayout) {
-                page = 1;
-                getData();
-            }
-
-            @Override
-            public void onLoadMore(TwinklingRefreshLayout refreshLayout) {
-                page++;
-                getData();
-            }
-        });
-    }
-
-    public void getData() {
-        mSubscription = apiService.trafficViolation("1", page).compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
+    protected void getData() {
+        mSubscription = apiService.carFencelist("1", page).compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
             @Override
             public void _onNext(JSONObject jsonObject) {
                 if (jsonObject.getInteger("code") == 1) {
                     Gson gson = new Gson();
-                    TrafficBean trafficBean = gson.fromJson(jsonObject.toString(), TrafficBean.class);
-                    if (trafficBean.getData().getList().size() < 1)
+                    EncloseBean encloseBean = gson.fromJson(jsonObject.toString(), EncloseBean.class);
+                    if (encloseBean.getData().getList().size() < 1)
                         mRefreshlayout.setEnableLoadmore(false);
                     else
                         mRefreshlayout.setEnableLoadmore(true);
                     if (page == 1)
-                        trafficLits.clear();
+                        mLists.clear();
 
-                    trafficLits.addAll(trafficBean.getData().getList());
+                    mLists.addAll(encloseBean.getData().getList());
                     setAdapter();
                 }
             }
@@ -95,37 +81,49 @@ public class IllegalToRemindActivity extends BaseToolbarActivity {
                 page = page == 1 ? 1 : page - 1;
             }
         });
+
     }
 
     private void setAdapter() {
         if (mAdapter == null) {
-            mAdapter = new BaseRecyclerAdapter<TrafficBean.DataBean.ListBean>(this, trafficLits, R.layout.item_weizhang_item) {
+            mAdapter = new BaseRecyclerAdapter<EncloseBean.DataBean.ListBean>(this, mLists, R.layout.item_dzwl_item) {
                 @Override
-                public void convert(BaseRecyclerHolder holder, TrafficBean.DataBean.ListBean item, int position, boolean isScrolling) {
-                    holder.setImageResource(R.id.icon, R.mipmap.ic_launcher);
-                    holder.setText(R.id.time, item.getTime());
+                public void convert(BaseRecyclerHolder holder, EncloseBean.DataBean.ListBean item, int position, boolean isScrolling) {
+
+//                    holder.setImageResource(R.mipmap.ic_launcher, R.id.icon);
+                    holder.setText(R.id.time, mLists.get(position).getDay());
+                    holder.setText(R.id.baojingshijian, mLists.get(position).getData());
                 }
             };
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+            mRecyclerView.addItemDecoration(new SpaceItemDecoration(DensityUtil.dp2px(this, 15), DensityUtil.dp2px(this, 15), DensityUtil.dp2px(this, 15)));
             mRecyclerView.setAdapter(mAdapter);
         } else {
             mAdapter.notifyDataSetChanged();
         }
-
     }
 
-    //停止刷新
-    private void onStopLoad() {
-        if (page == 1) {
-            mRefreshlayout.finishRefreshing();
-        } else {
-            mRefreshlayout.finishLoadmore();
-        }
+    @Override
+    public void setListener() {
+        mRefreshlayout.setOnRefreshListener(new RefreshListenerAdapter() {
+            @Override
+            public void onRefresh(TwinklingRefreshLayout refreshLayout) {
+                page = 1;
+                getData();
+            }
+
+            @Override
+            public void onLoadMore(TwinklingRefreshLayout refreshLayout) {
+                page++;
+                getData();
+            }
+        });
     }
 
     @Override
     protected void initView() {
-        initToobar("交通违章提醒");
+        initToobar("电子围栏");
+
         SinaRefreshView headerView = new SinaRefreshView(mContext);
         headerView.setArrowResource(R.mipmap.arrow_down);
         headerView.setTextColor(0xff745D5C);
@@ -137,11 +135,21 @@ public class IllegalToRemindActivity extends BaseToolbarActivity {
                 mRefreshlayout.startRefresh();
             }
         }, 200);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 mRefreshlayout.finishRefreshing();
             }
         }, 2000);
+    }
+
+    //停止刷新
+    private void onStopLoad() {
+        if (page == 1) {
+            mRefreshlayout.finishRefreshing();
+        } else {
+            mRefreshlayout.finishLoadmore();
+        }
     }
 }

@@ -106,7 +106,7 @@ public class CarLocationActivity extends BaseToolbarActivity {
 
     @Override
     protected void initData() {
-        mSubscription = apiService.carLocation("110").compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
+        mSubscription = apiService.carLocation("1").compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
 
             private String mLon;
 

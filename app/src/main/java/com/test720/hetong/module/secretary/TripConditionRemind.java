@@ -125,7 +125,7 @@ public class TripConditionRemind extends BaseToolbarActivity {
 
     @Override
     protected void initView() {
-
+        initToobar("出行路况提醒");
     }
 
     @OnClick({R.id.mapView, R.id.close, R.id.open})
@@ -138,6 +138,13 @@ public class TripConditionRemind extends BaseToolbarActivity {
 
                 break;
             case R.id.open:
+                if (mStartLocation.getText().toString().trim().isEmpty()||mEndLocation.getText().toString().trim().isEmpty()){
+                    ShowToast("终点起点不能为空");
+                }else if (mRoadName.getText().toString().trim().isEmpty()){
+                    ShowToast("路线名称不能为空");
+                }else {
+
+                }
 
                 break;
         }
@@ -145,6 +152,6 @@ public class TripConditionRemind extends BaseToolbarActivity {
 
     @Override
     public void setListener() {
-        
+
     }
 }

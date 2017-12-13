@@ -49,7 +49,7 @@ public class SecurityMonitorActivity extends BaseToolbarActivity {
     }
 
     protected void getData() {
-        mSubscription = apiService.systemTypeList("110").compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
+        mSubscription = apiService.systemTypeList("1").compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
             @Override
             public void _onNext(JSONObject jsonObject) {
                 if (jsonObject.getInteger("code") == 1) {

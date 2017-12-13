@@ -29,6 +29,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.DPoint;
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.AMapOptions;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.CircleOptions;
@@ -38,6 +39,7 @@ import com.test720.hetong.R;
 import com.test720.hetong.base.BaseToolbarActivity;
 import com.test720.hetong.network.RxSchedulersHelper;
 import com.test720.hetong.network.RxSubscriber;
+import com.test720.hetong.view.CircleImageView;
 import com.vilyever.socketclient.SocketClient;
 import com.vilyever.socketclient.SocketResponsePacket;
 import com.xw.repo.BubbleSeekBar;
@@ -76,6 +78,8 @@ public class EnclosureActivity extends BaseToolbarActivity {
     BubbleSeekBar mSeekBar;
     @BindView(R.id.controlRela)
     RelativeLayout mControlRela;
+    @BindView(R.id.message)
+    CircleImageView mMessage;
     private GeoFenceClient mGeoFenceClient;
     AMap aMap;
     public AMapLocationClient mLocationClient = null;
@@ -101,7 +105,7 @@ public class EnclosureActivity extends BaseToolbarActivity {
         String IPAddress = "";
         InetAddress ReturnStr1 = null;
         try {
-            ReturnStr1 = java.net.InetAddress.getByName(host);
+            ReturnStr1 = InetAddress.getByName(host);
             IPAddress = ReturnStr1.getHostAddress();
         } catch (UnknownHostException e) {
             // TODO Auto-generated catch block
@@ -184,7 +188,7 @@ public class EnclosureActivity extends BaseToolbarActivity {
     }
 
     private void getData() {
-        mSubscribe = apiService.carFencetype("110").compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
+        mSubscribe = apiService.carFencetype("1").compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
             @Override
             public void _onNext(JSONObject jsonObject) {
                 if (jsonObject.getInteger("code") == 1) {
@@ -262,7 +266,8 @@ public class EnclosureActivity extends BaseToolbarActivity {
         myLocationStyle.interval(1000);
         aMap.setMyLocationEnabled(true);
         aMap.getUiSettings().setMyLocationButtonEnabled(true);
-
+        aMap.getUiSettings().setZoomPosition(AMapOptions.ZOOM_POSITION_RIGHT_CENTER);
+        mMessage.bringToFront();
     }
 
     public void getCurrentLocation() {
@@ -431,6 +436,9 @@ public class EnclosureActivity extends BaseToolbarActivity {
     protected void onPause() {
         super.onPause();
         mMapView.onPause();
+        if (mLocationClient!=null){
+            mLocationClient.stopLocation();
+        }
     }
 
     @Override
@@ -440,7 +448,7 @@ public class EnclosureActivity extends BaseToolbarActivity {
     }
 
 
-    @OnClick({R.id.close, R.id.open})
+    @OnClick({R.id.close, R.id.open, R.id.message})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.close:
@@ -452,17 +460,17 @@ public class EnclosureActivity extends BaseToolbarActivity {
                 break;
             case R.id.open:
                 if (mOpen.isChecked()) {
-
                     switcEnclouse(1);
-
                 }
-
+                break;
+            case R.id.message:
+                jumpToActivity(EnclosureMessageActivity.class, false);
                 break;
         }
     }
 
     public void switcEnclouse(final int type) {
-        mSubscription = apiService.openFence("110", mCenterPoint.getLongitude() + "", mCenterPoint.getLatitude() + "", type, radious + "").compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
+        mSubscription = apiService.openFence("1", mCenterPoint.getLongitude() + "", mCenterPoint.getLatitude() + "", type, radious + "").compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
             @Override
             public void _onNext(JSONObject jsonObject) {
 
@@ -476,7 +484,6 @@ public class EnclosureActivity extends BaseToolbarActivity {
                         //会清除所有围栏
                         mGeoFenceClient.removeGeoFence();
                         mGeoFenceClient.setGeoFenceListener(null);
-                        
 
 
                     } else {

@@ -20,7 +20,7 @@ public interface ApiService {
      */
     @POST("OBD/keeperList")
     @FormUrlEncoded
-    Observable<JSONObject> keeperList(@Field("carsn") String carsn);
+    Observable<JSONObject> keeperList(@Field("uid") String carsn);
 
     /**
      * 通知列表
@@ -30,7 +30,7 @@ public interface ApiService {
      */
     @POST("OBD/carMeunList")
     @FormUrlEncoded
-    Observable<JSONObject> carMeunList(@Field("carsn") String carsn, @Field("page") int page);
+    Observable<JSONObject> carMeunList(@Field("uid") String carsn, @Field("page") int page);
 
     /**
      * 安全监控
@@ -39,7 +39,7 @@ public interface ApiService {
      */
     @POST("OBD/systemTypeList")
     @FormUrlEncoded
-    Observable<JSONObject> systemTypeList(@Field("carsn") String carsn);
+    Observable<JSONObject> systemTypeList(@Field("uid") String carsn);
 
     /**
      * 安全监控
@@ -49,7 +49,7 @@ public interface ApiService {
      */
     @POST("OBD/faultDetail")
     @FormUrlEncoded
-    Observable<JSONObject> faultDetail(@Field("carsn") String carsn, @Field("tid") String tid);
+    Observable<JSONObject> faultDetail(@Field("uid") String carsn, @Field("tid") String tid);
 
     /**
      * 汽车定位
@@ -58,7 +58,7 @@ public interface ApiService {
      */
     @POST("OBD/carLocation")
     @FormUrlEncoded
-    Observable<JSONObject> carLocation(@Field("carsn") String carsn);
+    Observable<JSONObject> carLocation(@Field("uid") String carsn);
 
     /**
      * 汽车行驶轨迹
@@ -68,7 +68,7 @@ public interface ApiService {
      */
     @POST("OBD/carRoute")
     @FormUrlEncoded
-    Observable<JSONObject> carRoute(@Field("carsn") String carsn, @Field("time") String time);
+    Observable<JSONObject> carRoute(@Field("uid") String carsn, @Field("time") String time);
 
     /**
      * 保护监控首页
@@ -77,7 +77,7 @@ public interface ApiService {
      */
     @POST("OBD/collisionCount")
     @FormUrlEncoded
-    Observable<JSONObject> collisionCount(@Field("carsn") String carsn);
+    Observable<JSONObject> collisionCount(@Field("uid") String carsn);
 
     /**
      * 汽车碰撞警告列表
@@ -87,7 +87,7 @@ public interface ApiService {
      */
     @POST("OBD/collisionList")
     @FormUrlEncoded
-    Observable<JSONObject> collisionList(@Field("carsn") String carsn, @Field("page") int page);
+    Observable<JSONObject> collisionList(@Field("uid") String carsn, @Field("page") int page);
 
     /**
      * 汽车交通违章列表
@@ -97,7 +97,7 @@ public interface ApiService {
      */
     @POST("OBD/trafficViolation")
     @FormUrlEncoded
-    Observable<JSONObject> trafficViolation(@Field("carsn") String carsn, @Field("page") int page);
+    Observable<JSONObject> trafficViolation(@Field("uid") String carsn, @Field("page") int page);
 
     /**
      * 汽车电子围栏状态
@@ -106,7 +106,7 @@ public interface ApiService {
      */
     @POST("OBD/carFencetype")
     @FormUrlEncoded
-    Observable<JSONObject> carFencetype(@Field("carsn") String carsn);
+    Observable<JSONObject> carFencetype(@Field("uid") String carsn);
 
     /**
      * 汽车电子围栏设置
@@ -119,7 +119,16 @@ public interface ApiService {
      */
     @POST("OBD/openFence")
     @FormUrlEncoded
-    Observable<JSONObject> openFence(@Field("carsn") String carsn, @Field("long") String longx, @Field("lat") String lat, @Field("type") int type, @Field("radius") String radius);
+    Observable<JSONObject> openFence(@Field("uid") String carsn, @Field("long") String longx, @Field("lat") String lat, @Field("type") int type, @Field("radius") String radius);
 
+    /**
+     * 汽车电子围栏警报记录
+     *
+     * @param carsn 汽车设备编号
+     * @param page  页数
+     */
+    @POST("OBD/carFencelist")
+    @FormUrlEncoded
+    Observable<JSONObject> carFencelist(@Field("uid") String carsn, @Field("page") int page);
 
 }

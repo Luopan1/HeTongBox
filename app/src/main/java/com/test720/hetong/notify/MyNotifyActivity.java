@@ -65,7 +65,7 @@ public class MyNotifyActivity extends BaseToolbarActivity {
     }
 
     public void getData() {
-        mSubscription = apiService.carMeunList("110", page).compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
+        mSubscription = apiService.carMeunList("1", page).compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
             @Override
             public void _onNext(JSONObject jsonObject) {
                 if (jsonObject.getInteger("code") == 1) {

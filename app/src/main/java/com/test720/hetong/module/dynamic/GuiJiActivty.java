@@ -115,7 +115,7 @@ public class GuiJiActivty extends BaseToolbarActivity {
             public void onDateSelected(Date date, int position) {
                 Log.e("TAG+++", formateDate(date));
                 aMap.clear();
-                mSubscription = apiService.carRoute("110", formateDate(date)).compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
+                mSubscription = apiService.carRoute("1", formateDate(date)).compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
                     @Override
                     public void _onNext(JSONObject jsonObject) {
                         if (jsonObject.getInteger("code") == 1) {

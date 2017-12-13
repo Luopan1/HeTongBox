@@ -39,7 +39,7 @@
             android:layout_alignLeft="@+id/time"
             android:layout_below="@+id/time"
             android:layout_marginTop="10dp"
-            android:text="交通违章提醒                                                                   "
+            android:text="交通违章提醒                                                                                                                                         "
             android:textColor="@color/white"
             android:textSize="16sp"/>
     </RelativeLayout>

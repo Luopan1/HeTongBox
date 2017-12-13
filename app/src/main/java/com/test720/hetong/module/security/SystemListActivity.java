@@ -47,7 +47,7 @@ public class SystemListActivity extends BaseToolbarActivity {
 
     @Override
     protected void initData() {
-        mSubscription = apiService.faultDetail("110", id).compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
+        mSubscription = apiService.faultDetail("1", id).compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
             @Override
             public void _onNext(JSONObject jsonObject) {
                 if (jsonObject.getInteger("code") == 1) {

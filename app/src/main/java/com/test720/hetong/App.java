@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.test720.hetong.network.AppManager;
 
+import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * Created by jie on 2017/5/8.
@@ -17,6 +19,8 @@ public class App extends Application{
     public void onCreate() {
         super.onCreate();
         init();
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
         instance = this;
     }
     private void init()

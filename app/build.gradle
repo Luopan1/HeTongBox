@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'tieshikeji'
             keyPassword 'tieshikeji888'
-            storeFile file('D:/签名/tieshikeji.jks')
+            storeFile file('D:/sign/tieshikeji.jks')
             storePassword 'tieshikeji888'
         }
     }
@@ -18,9 +18,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.config
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -53,6 +55,8 @@ dependencies {
     compile files('libs/AMap3DMap_5.5.0_AMapNavi_5.4.0_AMapSearch_5.5.0_AMapLocation_3.6.1_20171107.jar')
     compile project(':horizontalcalendar')
     compile project(':library')
+    compile files('libs/jcore-android-1.1.8.jar')
+    compile files('libs/jpush-android-3.1.0.jar')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.github.loonggg:RecyclerViewBanner:v1.2'

@@ -40,7 +40,7 @@ public class CollisionWarningActivity extends BaseToolbarActivity {
     }
 
     public void getData() {
-        mSubscription = apiService.collisionList("110", page).compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
+        mSubscription = apiService.collisionList("1", page).compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
             @Override
             public void _onNext(JSONObject jsonObject) {
                 if (jsonObject.getInteger("code") == 1) {

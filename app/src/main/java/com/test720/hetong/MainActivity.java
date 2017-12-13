@@ -18,6 +18,7 @@ import com.test720.hetong.mine.MineActivity;
 import com.test720.hetong.module.dynamic.DynamicMonitorActivity;
 import com.test720.hetong.module.protect.ProtectMonitorActivity;
 import com.test720.hetong.module.secretary.TravelSecretaryActivity;
+import com.test720.hetong.module.secretary.TripConditionRemind;
 import com.test720.hetong.module.security.SecurityMonitorActivity;
 import com.test720.hetong.network.RxSchedulersHelper;
 import com.test720.hetong.network.RxSubscriber;
@@ -62,7 +63,7 @@ public class MainActivity extends BaseToolbarActivity {
     }
 
     public void getData() {
-        mSubscription = apiService.keeperList("110").compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
+        mSubscription = apiService.keeperList("1").compose(RxSchedulersHelper.<JSONObject>io_main()).subscribe(new RxSubscriber<JSONObject>() {
             @Override
             public void _onNext(JSONObject jsonObject) {
                 if (jsonObject.getInteger("code") == 1) {
@@ -127,9 +128,9 @@ public class MainActivity extends BaseToolbarActivity {
                             protectNum = mClassificationList.get(position).getCount();
                             jumpToActivity(ProtectMonitorActivity.class, false);
                             break;
-                        case 3://汽车行驶秘书
+                        case 3://出行导航预设
                             index = 3;
-                            jumpToActivity(TravelSecretaryActivity.class, false);
+                            jumpToActivity(TripConditionRemind.class, false);
                             mClassificationList.get(position).setCount("0");
                             mainAdapter.notifyDataSetChanged();
                             break;
